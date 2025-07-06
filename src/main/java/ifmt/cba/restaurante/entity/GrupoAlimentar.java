@@ -37,12 +37,9 @@ public class GrupoAlimentar {
     }
 
     public String validar(){
-        String retorno = "";
-
-        if(this.nome == null || this.nome.length() < 3){
-            retorno += "Nome nao valido";
+        if (this.nome == null || this.nome.isEmpty()) {
+            return "O nome do grupo alimentar não pode ser nulo ou vazio";
         }
-
-        return retorno;
+        return "";
     }
 }

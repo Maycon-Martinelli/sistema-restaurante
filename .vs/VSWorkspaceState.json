@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\.mvn",
+    "\\log",
+    "\\src",
+    "\\src\\main",
+    "\\src\\main\\java",
+    "\\src\\main\\java\\ifmt",
+    "\\src\\main\\java\\ifmt\\cba",
+    "\\src\\main\\java\\ifmt\\cba\\restaurante",
+    "\\src\\main\\java\\ifmt\\cba\\restaurante\\controller"
+  ],
+  "SelectedNode": "\\src\\main\\java\\ifmt\\cba\\restaurante\\controller\\GrupoAlimentarService.java",
+  "PreviewInSolutionExplorer": false
+}

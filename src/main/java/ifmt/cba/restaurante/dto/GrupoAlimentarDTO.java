@@ -24,4 +24,5 @@ public class GrupoAlimentarDTO {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
     }
 
+    
 }

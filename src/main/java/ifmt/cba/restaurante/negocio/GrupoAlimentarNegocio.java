@@ -96,12 +96,27 @@ public class GrupoAlimentarNegocio {
 	}
 
 	public GrupoAlimentarDTO pesquisaPorNome(String parteNome) throws NotFoundException {
-		try {
-			return this.toDTO(grupoAlimentarRepository.findByNomeIgnoreCaseStartingWith(parteNome));
-		} catch (Exception ex) {
-			throw new NotFoundException("Erro ao pesquisar grupo alimentar pelo nome - " + ex.getMessage());
-		}
-	}
+        try {
+            // 1. A busca no repositório agora retorna uma LISTA.
+            List<GrupoAlimentar> listaResultados = grupoAlimentarRepository.findByNomeIgnoreCaseStartingWith(parteNome);
+
+            // 2. Verificamos se a lista de resultados está vazia.
+            // Se estiver, significa que não encontramos nenhum grupo com aquele nome.
+            if (listaResultados.isEmpty()) {
+                throw new NotFoundException("Nenhum grupo alimentar encontrado com o nome iniciando por: " + parteNome);
+            }
+
+            // 3. Se a lista não estiver vazia, pegamos o PRIMEIRO item dela.
+            GrupoAlimentar primeiroResultado = listaResultados.get(0);
+
+            // 4. Agora sim, passamos UM ÚNICO objeto para o método toDTO.
+            return this.toDTO(primeiroResultado);
+
+        } catch (Exception ex) {
+            // Este bloco 'catch' agora serve para capturar outros erros inesperados.
+            throw new NotFoundException("Erro ao pesquisar grupo alimentar pelo nome - " + ex.getMessage());
+        }
+    }
 
 	public GrupoAlimentarDTO pesquisaCodigo(int codigo) throws NotFoundException {
 		try {
