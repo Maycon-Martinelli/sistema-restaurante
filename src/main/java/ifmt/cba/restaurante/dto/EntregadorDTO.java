@@ -2,6 +2,7 @@ package ifmt.cba.restaurante.dto;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.springframework.hateoas.RepresentationModel;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -14,7 +15,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = false)
-public class EntregadorDTO {
+public class EntregadorDTO extends RepresentationModel<EntregadorDTO>{
 
     private int codigo;
     private String nome;
