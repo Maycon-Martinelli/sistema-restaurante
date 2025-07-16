@@ -3,6 +3,8 @@ package ifmt.cba.restaurante.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -60,6 +62,16 @@ public class PedidoController {
         return ResponseEntity.noContent().build();
     }
 
-    // outros endpoints como deletar, buscar por código, data, cliente etc.
+    @GetMapping("/{codigo}")
+    public ResponseEntity<PedidoDTO> buscarPedidoPorCodigo(@PathVariable int codigo) throws NotFoundException {
+        PedidoDTO pedidoEncontrado = pedidoNegocio.pesquisaCodigo(codigo);
+        return ResponseEntity.ok(pedidoEncontrado);
+    }
 
+    @DeleteMapping("/{codigo}")
+    public ResponseEntity<Void> deletarPedido(@PathVariable int codigo) throws NotFoundException, NotValidDataException {
+        PedidoDTO pedidoParaExcluir = pedidoNegocio.pesquisaCodigo(codigo);
+        pedidoNegocio.excluir(pedidoParaExcluir);
+        return ResponseEntity.noContent().build();
+    }
 }
